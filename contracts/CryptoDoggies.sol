@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.5.0;
 
 contract CryptoDoggies {
@@ -6,6 +8,7 @@ contract CryptoDoggies {
 
     struct Doggy {
 
+        
         uint age;
         string name;
         bytes5 dna;
@@ -27,7 +30,9 @@ contract CryptoDoggies {
             dna: _dna
         });//memory temporal
 
-        uint256 newDoggyID = doggies.push(_doggy) - 1;
+        uint256 newDoggyID = doggies.length; // Get the new length before the push
+
+        doggies.push(_doggy);
 
         doggyIdToOwner[newDoggyID] = msg.sender; //who is calling the function
         numOfDoggies[msg.sender] = numOfDoggies[msg.sender] + 1;
